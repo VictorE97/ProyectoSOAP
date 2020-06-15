@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+targetNamespace="http://www.example.org/Aerolinea" 
+xmlns:tns="http://www.example.org/Aerolinea" 
+elementFormDefault="qualified">
+	
+	<!-- Pasajero -->
+	<element name="RegistrarPasajeroRequest">
+		<complexType>
+			<sequence>
+				<element name="nombre" type="string"></element>
+				<element name="apellido" type="string"></element>
+				<element name="direccion" type="string"></element>
+				<element name="telefono" type="string"></element>
+				<element name="correo" type="string"></element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="RegistrarPasajeroResponse">
+		<complexType>
+			<sequence>
+				<element name="respuesta" type="string">
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="ActualizarPasajeroRequest">
+		<complexType>
+			<sequence>
+				<element name="idPasajero" type="int"></element>
+				<element name="nombre" type="string"></element>
+				<element name="apellido" type="string"></element>
+				<element name="direccion" type="string"></element>
+				<element name="telefono" type="string"></element>
+				<element name="correo" type="string"></element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="ActualizarPasajeroResponse">
+		<complexType>
+			<sequence>
+				<element name="respuesta" type="string"></element>
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="EliminarPasajeroRequest">
+		<complexType>
+			<sequence>
+				<element name="idPasajero" type="int"></element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="EliminarPasajeroResponse">
+		<complexType>
+			<sequence>
+				<element name="respuesta" type="string">
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="ConsultarPasajeroRequest">
+		<complexType>
+			<sequence>
+				<element name="idPasajero" type="int"></element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="ConsultarPasajeroResponse">
+		<complexType>
+			<sequence>
+				<element name="nombre" type="string"></element>
+				<element name="apellido" type="string"></element>
+				<element name="direccion" type="string"></element>
+				<element name="telefono" type="string"></element>
+				<element name="correo" type="string"></element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="ListarPasajerosRequest">
+		<complexType>
+			<sequence>
+				
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="ListarPasajerosResponse">
+		<complexType>
+		    <sequence>
+		        <element name="pasajero" maxOccurs="unbounded">
+		            <complexType>
+		            	<sequence>
+		                    <element name="idPasajero" type="int"/>
+		                    <element name="nombre" type="string"/>
+		                    <element name="apellido" type="string"/>
+		                    <element name="direccion" type="string"/>
+		                    <element name="telefono" type="string"/>
+		                    <element name="correo" type="string"/>
+	                    </sequence>
+		            </complexType>
+		        </element>
+		    </sequence>
+		</complexType>
+	</element>
+	
+	<!-- Avion -->
+	<element name="RegistrarAvionRequest">
+		<complexType>
+			<sequence>
+				<element name="modelo" type="string"></element>
+				<element name="numPasajeros" type="int"></element>
+				<element name="piloto" type="string"></element>
+				<element name="aeromosas" type="string"></element>
+				<element name="destino" type="string"></element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="RegistrarAvionResponse">
+		<complexType>
+			<sequence>
+				<element name="respuesta" type="string">
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="ConsultarAvionRequest">
+		<complexType>
+			<sequence>
+				<element name="idAvion" type="int"></element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="ConsultarAvionResponse">
+		<complexType>
+			<sequence>
+				<element name="modelo" type="string"></element>
+				<element name="numPasajeros" type="int"></element>
+				<element name="piloto" type="string"></element>
+				<element name="aeromosas" type="string"></element>
+				<element name="destino" type="string"></element>
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="ActualizarAvionRequest">
+		<complexType>
+			<sequence>
+				<element name="idAvion" type="int"></element>
+				<element name="modelo" type="string"></element>
+				<element name="numPasajeros" type="int"></element>
+				<element name="piloto" type="string"></element>
+				<element name="aeromosas" type="string"></element>
+				<element name="destino" type="string"></element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="ActualizarAvionResponse">
+		<complexType>
+			<sequence>
+				<element name="respuesta" type="string"></element>
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="EliminarAvionRequest">
+		<complexType>
+			<sequence>
+				<element name="idAvion" type="int"></element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="EliminarAvionResponse">
+		<complexType>
+			<sequence>
+				<element name="respuesta" type="string">
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="ListarAvionesRequest">
+		<complexType>
+			<sequence>
+				
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="ListarAvionesResponse">
+		<complexType>
+		    <sequence>
+		        <element name="avion" maxOccurs="unbounded">
+		            <complexType>
+		            	<sequence>
+		                    <element name="idAvion" type="int"></element>
+							<element name="modelo" type="string"></element>
+							<element name="numPasajeros" type="int"></element>
+							<element name="piloto" type="string"></element>
+							<element name="aeromosas" type="string"></element>
+							<element name="destino" type="string"></element>
+	                    </sequence>
+		            </complexType>
+		        </element>
+		    </sequence>
+		</complexType>
+	</element>
+	
+	<!-- Compra de boleto -->
+	<element name="RegistrarComprarBoletoRequest">
+		<complexType>
+			<sequence>
+				<element name="fecha" type="string"></element>
+				<element name="origen" type="string"></element>
+				<element name="destino" type="string"></element>
+				<element name="asiento" type="string"></element>
+				<element name="pago" type="string"></element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="RegistrarComprarBoletoResponse">
+		<complexType>
+			<sequence>
+				<element name="respuesta" type="string">
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="ConsultarBoletoRequest">
+		<complexType>
+			<sequence>
+				<element name="idBoleto" type="int"></element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="ConsultarBoletoResponse">
+		<complexType>
+			<sequence>
+				<element name="fecha" type="string"></element>
+				<element name="origen" type="string"></element>
+				<element name="destino" type="string"></element>
+				<element name="asiento" type="string"></element>
+				<element name="pago" type="string"></element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="EliminarCompraBoletoRequest">
+		<complexType>
+			<sequence>
+				<element name="idBoleto" type="int"></element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="EliminarCompraBoletoResponse">
+		<complexType>
+			<sequence>
+				<element name="respuesta" type="string">
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="ActualizarBoletoRequest">
+		<complexType>
+			<sequence>
+				<element name="idBoleto" type="int"></element>
+				<element name="fecha" type="string"></element>
+				<element name="origen" type="string"></element>
+				<element name="destino" type="string"></element>
+				<element name="asiento" type="string"></element>
+				<element name="pago" type="string"></element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="ActualizarBoletoResponse">
+		<complexType>
+			<sequence>
+				<element name="respuesta" type="string"></element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="ListarBoletosRequest">
+		<complexType>
+			<sequence>
+				
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="ListarBoletosResponse">
+		<complexType>
+		    <sequence>
+		        <element name="boleto" maxOccurs="unbounded">
+		            <complexType>
+		            	<sequence>
+		                    <element name="idBoleto" type="int"></element>
+							<element name="fecha" type="string"></element>
+							<element name="origen" type="string"></element>
+							<element name="destino" type="string"></element>
+							<element name="asiento" type="string"></element>
+							<element name="pago" type="string"></element>
+	                    </sequence>
+		            </complexType>
+		        </element>
+		    </sequence>
+		</complexType>
+	</element>
+	
+	<!-- Vuelo -->
+	<element name="RegistrarVueloRequest">
+		<complexType>
+			<sequence>
+				<element name="avion" type="string"></element>
+				<element name="destino" type="string"></element>
+				<element name="fecha" type="string"></element>
+				<element name="horaSalida" type="string"></element>
+				<element name="horaLlegada" type="string"></element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="RegistrarVueloResponse">
+		<complexType>
+			<sequence>
+				<element name="respuesta" type="string">
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="ConsultarVueloRequest">
+		<complexType>
+			<sequence>
+				<element name="idVuelo" type="int"></element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="ConsultarVueloResponse">
+		<complexType>
+			<sequence>
+				<element name="avion" type="string"></element>
+				<element name="destino" type="string"></element>
+				<element name="fecha" type="string"></element>
+				<element name="horaSalida" type="string"></element>
+				<element name="horaLlegada" type="string"></element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="EliminarVueloRequest">
+		<complexType>
+			<sequence>
+				<element name="idVuelo" type="int"></element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="EliminarVueloResponse">
+		<complexType>
+			<sequence>
+				<element name="respuesta" type="string">
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="ActualizarVueloRequest">
+		<complexType>
+			<sequence>
+				<element name="idVuelo" type="int"></element>
+				<element name="avion" type="string"></element>
+				<element name="destino" type="string"></element>
+				<element name="fecha" type="string"></element>
+				<element name="horaSalida" type="string"></element>
+				<element name="horaLlegada" type="string"></element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="ActualizarVueloResponse">
+		<complexType>
+			<sequence>
+				<element name="respuesta" type="string"></element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="ListarVuelosRequest">
+		<complexType>
+			<sequence>
+				
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="ListarVuelosResponse">
+		<complexType>
+		    <sequence>
+		        <element name="vuelo" maxOccurs="unbounded">
+		            <complexType>
+		            	<sequence>
+		                    <element name="idVuelo" type="int"></element>
+							<element name="avion" type="string"></element>
+							<element name="destino" type="string"></element>
+							<element name="fecha" type="string"></element>
+							<element name="horaSalida" type="string"></element>
+							<element name="horaLlegada" type="string"></element>
+	                    </sequence>
+		            </complexType>
+		        </element>
+		    </sequence>
+		</complexType>
+	</element>
+	
+</schema>
+
