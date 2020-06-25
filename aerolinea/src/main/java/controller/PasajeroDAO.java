@@ -50,7 +50,7 @@ public class PasajeroDAO {
 		boolean resultado = false;
 		this.database = new Conexion();
 		try {
-			this.database.connect().createStatement().execute(
+			this.database.connection().createStatement().execute(
 					"INSERT INTO pasajeros (nombre,apellido,direccion,telefono,correo) VALUES "
 					+ "('"+this.nombre+"','"+this.apellido+"','"+this.direccion+"','"+this.telefono
 					+"','"+this.correo+"')");
@@ -72,7 +72,7 @@ public class PasajeroDAO {
 					+ " telefono = '"+this.telefono+"',"
 					+ " correo = '"+this.correo+"'"
 					+ " WHERE idPasajero = "+this.idPasajero;
-			this.database.connect().createStatement().execute(query);
+			this.database.connection().createStatement().execute(query);
 			
 			resultado = true;
 		} catch (SQLException e) {
@@ -85,7 +85,7 @@ public class PasajeroDAO {
 		boolean resultado = false;
 		this.database = new Conexion();
 		try {
-			this.database.connect().createStatement().execute(
+			this.database.connection().createStatement().execute(
 					"DELETE FROM pasajeros WHERE idPasajero = "+this.idPasajero);
 			resultado = true;				
 		} catch(SQLException e) {
@@ -99,7 +99,7 @@ public class PasajeroDAO {
 		this.database = new Conexion();
 			try {
 				final String queryCheck = "SELECT * FROM pasajeros WHERE idPasajero = "+this.idPasajero;
-				final PreparedStatement ps = this.database.connect().prepareStatement(queryCheck);
+				final PreparedStatement ps = this.database.connection().prepareStatement(queryCheck);
 				//ps.setString(1, msgid);
 				final ResultSet resultSet = ps.executeQuery();
 				if(resultSet.next()) {
@@ -116,7 +116,7 @@ public class PasajeroDAO {
 		Pasajero pasajero = null;
 		this.database = new Conexion();
 		try {
-			ResultSet rs = this.database.connect().createStatement().executeQuery("SELECT * FROM pasajeros WHERE idPasajero="+id);
+			ResultSet rs = this.database.connection().createStatement().executeQuery("SELECT * FROM pasajeros WHERE idPasajero="+id);
 			while(rs.next()) {
 				pasajero = new Pasajero(rs.getString("nombre"), rs.getString("apellido"), rs.getString("direccion")
 						, rs.getString("telefono"), rs.getString("correo"));
@@ -131,7 +131,7 @@ public class PasajeroDAO {
 		ArrayList<ListarPasajerosResponse.Pasajero> pasajeros = new ArrayList<ListarPasajerosResponse.Pasajero>();
 		this.database = new Conexion();
 		try {
-			ResultSet rs = this.database.connect().createStatement().executeQuery("SELECT * FROM pasajeros");
+			ResultSet rs = this.database.connection().createStatement().executeQuery("SELECT * FROM pasajeros");
 			while(rs.next()) {
 				ListarPasajerosResponse.Pasajero p = new ListarPasajerosResponse.Pasajero(rs.getInt("idPasajero"), rs.getString("nombre"), rs.getString("apellido"), rs.getString("direccion"), rs.getString("telefono"), rs.getString("correo"));
 				pasajeros.add(p);

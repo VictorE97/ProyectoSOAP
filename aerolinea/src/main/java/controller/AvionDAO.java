@@ -51,7 +51,7 @@ public class AvionDAO {
 		boolean resultado = false;
 		this.database = new Conexion();
 		try {
-			this.database.connect().createStatement().execute(
+			this.database.connection().createStatement().execute(
 					"INSERT INTO aviones (modelo,numPasajeros,piloto,aeromosas,destino) VALUES "
 					+ "('"+this.modelo+"','"+this.numPasajeros+"','"+this.piloto+"','"+this.aeromosas
 					+"','"+this.destino+"')");
@@ -66,7 +66,7 @@ public class AvionDAO {
 		Avion avion = null;
 		this.database = new Conexion();
 		try {
-			ResultSet rs = this.database.connect().createStatement().executeQuery("SELECT * FROM aviones WHERE idAvion="+id);
+			ResultSet rs = this.database.connection().createStatement().executeQuery("SELECT * FROM aviones WHERE idAvion="+id);
 			while(rs.next()) {
 				avion = new Avion(rs.getString("modelo"), rs.getInt("numPasajeros"), rs.getString("piloto")
 						, rs.getString("aeromosas"), rs.getString("destino"));
@@ -88,7 +88,7 @@ public class AvionDAO {
 					+ " aeromosas = '"+this.aeromosas+"',"
 					+ " destino = '"+this.destino+"'"
 					+ " WHERE idAvion = "+this.idAvion;
-			this.database.connect().createStatement().execute(query);
+			this.database.connection().createStatement().execute(query);
 			
 			resultado = true;
 		} catch (SQLException e) {
@@ -101,7 +101,7 @@ public class AvionDAO {
 		boolean resultado = false;
 		this.database = new Conexion();
 		try {
-			this.database.connect().createStatement().execute(
+			this.database.connection().createStatement().execute(
 					"DELETE FROM aviones WHERE idAvion = "+this.idAvion);
 			resultado = true;				
 		} catch(SQLException e) {
@@ -115,7 +115,7 @@ public class AvionDAO {
 		this.database = new Conexion();
 			try {
 				final String queryCheck = "SELECT * FROM aviones WHERE idAvion = "+this.idAvion;
-				final PreparedStatement ps = this.database.connect().prepareStatement(queryCheck);
+				final PreparedStatement ps = this.database.connection().prepareStatement(queryCheck);
 				final ResultSet resultSet = ps.executeQuery();
 				if(resultSet.next()) {
 				    final int count = resultSet.getInt(1);
@@ -131,7 +131,7 @@ public class AvionDAO {
 		ArrayList<ListarAvionesResponse.Avion> aviones = new ArrayList<ListarAvionesResponse.Avion>();
 		this.database = new Conexion();
 		try {
-			ResultSet rs = this.database.connect().createStatement().executeQuery("SELECT * FROM aviones");
+			ResultSet rs = this.database.connection().createStatement().executeQuery("SELECT * FROM aviones");
 			while(rs.next()) {
 				ListarAvionesResponse.Avion a = new ListarAvionesResponse.Avion(rs.getInt("idAvion"), rs.getString("modelo"), rs.getInt("numPasajeros"), rs.getString("piloto"), rs.getString("aeromosas"), rs.getString("destino"));
 				aviones.add(a);

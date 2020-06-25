@@ -50,7 +50,7 @@ public class ComprarBoletoDAO {
 		boolean resultado = false;
 		this.database = new Conexion();
 		try {
-			this.database.connect().createStatement().execute(
+			this.database.connection().createStatement().execute(
 					"INSERT INTO comprarboleto (fecha,origen,destino,asiento,pago) VALUES "
 					+ "('"+this.fecha+"','"+this.origen+"','"+this.destino+"','"+this.asiento
 					+"','"+this.pago+"')");
@@ -65,7 +65,7 @@ public class ComprarBoletoDAO {
 		ComprarBoleto boleto = null;
 		this.database = new Conexion();
 		try {
-			ResultSet rs = this.database.connect().createStatement().executeQuery("SELECT * FROM comprarboleto WHERE idBoleto="+id);
+			ResultSet rs = this.database.connection().createStatement().executeQuery("SELECT * FROM comprarboleto WHERE idBoleto="+id);
 			while(rs.next()) {
 				boleto = new ComprarBoleto(rs.getString("fecha"), rs.getString("origen"), rs.getString("destino")
 						, rs.getString("asiento"), rs.getString("pago"));
@@ -80,7 +80,7 @@ public class ComprarBoletoDAO {
 		boolean resultado = false;
 		this.database = new Conexion();
 		try {
-			this.database.connect().createStatement().execute(
+			this.database.connection().createStatement().execute(
 					"DELETE FROM comprarboleto WHERE idBoleto = "+this.idBoleto);
 			resultado = true;				
 		} catch(SQLException e) {
@@ -100,7 +100,7 @@ public class ComprarBoletoDAO {
 					+ " asiento = '"+this.asiento+"',"
 					+ " pago = '"+this.pago+"'"
 					+ " WHERE idBoleto = "+this.idBoleto;
-			this.database.connect().createStatement().execute(query);
+			this.database.connection().createStatement().execute(query);
 			
 			resultado = true;
 		} catch (SQLException e) {
@@ -114,7 +114,7 @@ public class ComprarBoletoDAO {
 		this.database = new Conexion();
 			try {
 				final String queryCheck = "SELECT * FROM comprarboleto WHERE idBoleto = "+this.idBoleto;
-				final PreparedStatement ps = this.database.connect().prepareStatement(queryCheck);
+				final PreparedStatement ps = this.database.connection().prepareStatement(queryCheck);
 				final ResultSet resultSet = ps.executeQuery();
 				if(resultSet.next()) {
 				    final int count = resultSet.getInt(1);
@@ -130,7 +130,7 @@ public class ComprarBoletoDAO {
 		ArrayList<ListarBoletosResponse.Boleto> boletos = new ArrayList<ListarBoletosResponse.Boleto>();
 		this.database = new Conexion();
 		try {
-			ResultSet rs = this.database.connect().createStatement().executeQuery("SELECT * FROM comprarboleto");
+			ResultSet rs = this.database.connection().createStatement().executeQuery("SELECT * FROM comprarboleto");
 			while(rs.next()) {
 				ListarBoletosResponse.Boleto b = new ListarBoletosResponse.Boleto(rs.getInt("idBoleto"), rs.getString("fecha"), rs.getString("origen"), rs.getString("destino"), rs.getString("asiento"), rs.getString("pago"));
 				boletos.add(b);

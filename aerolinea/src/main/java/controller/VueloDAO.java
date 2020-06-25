@@ -50,7 +50,7 @@ public class VueloDAO {
 		boolean resultado = false;
 		this.database = new Conexion();
 		try {
-			this.database.connect().createStatement().execute(
+			this.database.connection().createStatement().execute(
 					"INSERT INTO vuelo (avion,destino,fecha,horaSalida,horaLlegada) VALUES "
 					+ "('"+this.avion+"','"+this.destino+"','"+this.fecha+"','"+this.horaSalida
 					+"','"+this.horaLlegada+"')");
@@ -65,7 +65,7 @@ public class VueloDAO {
 		Vuelo vuelo = null;
 		this.database = new Conexion();
 		try {
-			ResultSet rs = this.database.connect().createStatement().executeQuery("SELECT * FROM vuelo WHERE idVuelo="+id);
+			ResultSet rs = this.database.connection().createStatement().executeQuery("SELECT * FROM vuelo WHERE idVuelo="+id);
 			while(rs.next()) {
 				vuelo = new Vuelo(rs.getString("avion"), rs.getString("destino"), rs.getString("fecha")
 						, rs.getString("horaSalida"), rs.getString("horaLlegada"));
@@ -80,7 +80,7 @@ public class VueloDAO {
 		boolean resultado = false;
 		this.database = new Conexion();
 		try {
-			this.database.connect().createStatement().execute(
+			this.database.connection().createStatement().execute(
 					"DELETE FROM vuelo WHERE idVuelo = "+this.idVuelo);
 			resultado = true;				
 		} catch(SQLException e) {
@@ -100,7 +100,7 @@ public class VueloDAO {
 					+ " horaSalida = '"+this.horaSalida+"',"
 					+ " horaLlegada = '"+this.horaLlegada+"'"
 					+ " WHERE idVuelo = "+this.idVuelo;
-			this.database.connect().createStatement().execute(query);
+			this.database.connection().createStatement().execute(query);
 			
 			resultado = true;
 		} catch (SQLException e) {
@@ -114,7 +114,7 @@ public class VueloDAO {
 		this.database = new Conexion();
 			try {
 				final String queryCheck = "SELECT * FROM vuelo WHERE idVuelo = "+this.idVuelo;
-				final PreparedStatement ps = this.database.connect().prepareStatement(queryCheck);
+				final PreparedStatement ps = this.database.connection().prepareStatement(queryCheck);
 				final ResultSet resultSet = ps.executeQuery();
 				if(resultSet.next()) {
 				    final int count = resultSet.getInt(1);
@@ -130,7 +130,7 @@ public class VueloDAO {
 		ArrayList<ListarVuelosResponse.Vuelo> vuelos = new ArrayList<ListarVuelosResponse.Vuelo>();
 		this.database = new Conexion();
 		try {
-			ResultSet rs = this.database.connect().createStatement().executeQuery("SELECT * FROM vuelo");
+			ResultSet rs = this.database.connection().createStatement().executeQuery("SELECT * FROM vuelo");
 			while(rs.next()) {
 				ListarVuelosResponse.Vuelo v = new ListarVuelosResponse.Vuelo(rs.getInt("idVuelo"), rs.getString("avion"), rs.getString("destino"), rs.getString("fecha"), rs.getString("horaSalida"), rs.getString("horaLlegada"));
 				vuelos.add(v);
